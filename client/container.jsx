@@ -1,0 +1,39 @@
+import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
+
+import {reservationCreate, reservationFulfill, reservationCancel} from './actions';
+import store from './store';
+
+import ReservationsManager from './components/reservationsManager.jsx';
+import ReservationSchema from './schema';
+
+const ReservationsContainer = React.createClass({
+  render() {
+    return (
+      <ReservationsManager schema={ ReservationSchema } {...this.props}/>
+    )
+  }
+});
+
+// now we connect the component to the Redux store:
+var mapStateToProps = function(state){
+  return { reservations: state.reservations }
+};
+
+var mapDispatchToProps = function(dispatch){
+  return {
+    reservationCreate: function(reservation) {  dispatch(reservationCreate(reservation)) },
+    statusChange: function(e) {
+
+      if(e.target.value == "Fulfilled") {
+        dispatch(reservationFulfill(e.target.id));
+      }
+      if(e.target.value == "Canceled") {
+        dispatch(reservationCancel(e.target.id));
+      }
+    }
+  }
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(ReservationsContainer);
+
