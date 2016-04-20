@@ -23,13 +23,13 @@ var mapStateToProps = function(state){
 var mapDispatchToProps = function(dispatch){
   return {
     reservationCreate: function(reservation) {  dispatch(reservationCreate(reservation)) },
-    statusChange: function(e) {
-
-      if(e.target.value == "Fulfilled") {
-        dispatch(reservationFulfill(e.target.id));
+    statusChange: function(status, id) {
+      debugger;
+      if(status == "Fulfilled") {
+        dispatch(reservationFulfill(id));
       }
-      if(e.target.value == "Canceled") {
-        dispatch(reservationCancel(e.target.id));
+      if(status == "Canceled") {
+        dispatch(reservationCancel(id));
       }
     }
   }

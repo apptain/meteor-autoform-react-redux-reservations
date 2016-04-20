@@ -1,8 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
 
-export default class Reservation extends Component {
-  render() {
+var Reservation = React.createClass({
+  statusChange: function(e){
+    debugger;
+    return this.props.statusChange(e.target.value, e.target.id);
+  },
+  render: function(){
     return (
       <li>
         <span className="text">
@@ -11,7 +15,7 @@ export default class Reservation extends Component {
 
           &nbsp;&nbsp;
           { this.props.reservation.status == "Pending" ? (
-            <select id={this.props.reservation._id} name="status" value={this.props.status} onChange={this.props.statusChange}>
+            <select id={this.props.reservation._id} name="status" value={this.props.status} onChange={this.statusChange}>
               <option value="Pending">Pending</option>
               <option value="Fulfilled">Fulfilled</option>
               <option value="Canceled">Canceled</option>
@@ -21,4 +25,6 @@ export default class Reservation extends Component {
       </li>
     );
   }
-}
+})
+
+export default Reservation;
