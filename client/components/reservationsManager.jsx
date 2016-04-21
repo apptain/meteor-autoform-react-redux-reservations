@@ -21,7 +21,7 @@ export default class ReservationsManager extends Component {
           <h1>Reservations</h1>
           <ReservationForm
             schema={ this.props.schema }
-            reservationCreate={ this.props.reservationCreate }
+            formSubmit={ this.props.formSubmit }
           />
         </header>
         <ul>

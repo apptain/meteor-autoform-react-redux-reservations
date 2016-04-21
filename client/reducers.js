@@ -1,22 +1,25 @@
 import _ from 'lodash';
 
 const initialState = {
-  reservations: []
+  reservations: [],
+  reservationCreateErrors: []
 };
 
 export default (state = initialState, action) => {
-
   switch (action.type) {
     case 'RESERVATION_CREATE':
+      debugger;
       return Object.assign({}, state, {
         reservations: [...state.reservations, action.reservation]
       });
+    case 'RESERVATION_CREATE_ERROR':
+      debugger;
+      return Object.assign({}, state, {
+        reservationCreateErrors: action.errors
+      });
     case 'RESERVATION_FULFILL':
-
       var reservations = _.map(state.reservations, function(reservation){
-        debugger;
         if(reservation._id == action.id) {
-          debugger;
           reservation.status = "Fulfilled";
         }
         return reservation;
@@ -36,5 +39,5 @@ export default (state = initialState, action) => {
       });
     default:
       return state;
-    }
+  }
 };

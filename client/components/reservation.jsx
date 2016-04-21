@@ -3,7 +3,6 @@ import classnames from 'classnames';
 
 var Reservation = React.createClass({
   statusChange: function(e){
-    debugger;
     return this.props.statusChange(e.target.value, e.target.id);
   },
   render: function(){

@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 
-import {reservationCreate, reservationFulfill, reservationCancel} from './actions';
+import {reservationCreate, reservationFulfill, reservationCancel} from './actionCreators';
 import store from './store';
 
 import ReservationsManager from './components/reservationsManager.jsx';
@@ -17,14 +17,21 @@ const ReservationsContainer = React.createClass({
 
 // now we connect the component to the Redux store:
 var mapStateToProps = function(state){
-  return { reservations: state.reservations }
+  //dateTime is a string, so this is is useless for now. autoform datetimepicker passes a string
+  //TODO Should be a date,
+  //_.orderBy(state.reservations, ['dateTime'], ['desc']);
+  return {
+    reservations: state.reservations
+  }
 };
 
 var mapDispatchToProps = function(dispatch){
   return {
-    reservationCreate: function(reservation) {  dispatch(reservationCreate(reservation)) },
-    statusChange: function(status, id) {
+    formSubmit: function(doc) {
       debugger;
+      dispatch(reservationCreate(doc))
+    },
+    statusChange: function(status, id) {
       if(status == "Fulfilled") {
         dispatch(reservationFulfill(id));
       }

@@ -10,7 +10,7 @@ import ReservationsContainer from './container.jsx'
 Meteor.startup(() => {
   render(
     <Provider store={store}>
-      <ReservationsContainer reservations={[]}/>
+      <ReservationsContainer />
     </Provider>,
     document.getElementById('render-target'));
 });
