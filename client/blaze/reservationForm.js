@@ -16,6 +16,11 @@ Template.ReservationForm.created = function () {
   }
 };
 
+Template.ReservationForm.rendered = function () {
+  var button = $('.btn-primary');
+  button.html("&#10004;");
+};
+
 Template.ReservationForm.events({
   'submit form': function (e, template) {
     var doc = {};
