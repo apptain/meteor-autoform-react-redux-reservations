@@ -8,12 +8,10 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'RESERVATION_CREATE':
-      debugger;
       return Object.assign({}, state, {
         reservations: [...state.reservations, action.reservation]
       });
     case 'RESERVATION_CREATE_ERROR':
-      debugger;
       return Object.assign({}, state, {
         reservationCreateErrors: action.errors
       });

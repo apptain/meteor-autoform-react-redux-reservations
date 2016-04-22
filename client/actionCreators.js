@@ -23,14 +23,12 @@ export function reservationCreate(doc) {
     dateCreated: new Date()
   }
   var context = ReservationSchema.newContext();
-  debugger;
   if (context.validate(reservation)) {
     return {
       type: 'RESERVATION_CREATE',
       reservation: reservation
     };
   } else {
-    debugger;
     return {
       type: 'RESERVATION_CREATE_ERROR',
       errors: context

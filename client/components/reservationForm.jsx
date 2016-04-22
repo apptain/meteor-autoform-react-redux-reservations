@@ -28,7 +28,7 @@ export default class ReservationForm extends Component {
     template = Template['ReservationForm'];
     this.blazeView = Blaze.renderWithData(template, data, container);
 
-    debugger;
+    //SetTimeout is necessary for Tracker autorun to work
     setTimeout(this.startComputation(formAction, this.props.formSubmit), 0);
   }
   startComputation(formAction,formSubmit) {
@@ -36,7 +36,6 @@ export default class ReservationForm extends Component {
       if (action = formAction.get()) {
         switch (action.type) {
           case 'FORM_SUBMIT':
-            debugger;
             formSubmit(action.doc);
           default:
             throw "Unhandled Action";

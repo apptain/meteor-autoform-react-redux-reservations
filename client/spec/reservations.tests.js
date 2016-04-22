@@ -1,4 +1,4 @@
-import {reservationCreate} from '../actions';
+import {reservationCreate} from '../actionCreators';
 import reducer from '../reducers';
 
 const {describe, it} = global;
@@ -17,9 +17,7 @@ describe('reservations', () => {
     });
     it('should add successfully created reservation to local storage state', () => {
       const initialState = {count: 0, reservations: []};
-
       const dateTime = new Date();
-
       const newState = reducer(initialState,
       {
         type: 'RESERVATION_CREATE',

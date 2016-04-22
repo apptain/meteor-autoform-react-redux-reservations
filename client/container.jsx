@@ -28,7 +28,6 @@ var mapStateToProps = function(state){
 var mapDispatchToProps = function(dispatch){
   return {
     formSubmit: function(doc) {
-      debugger;
       dispatch(reservationCreate(doc))
     },
     statusChange: function(status, id) {
