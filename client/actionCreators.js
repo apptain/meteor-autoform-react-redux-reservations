@@ -17,7 +17,7 @@ export function reservationCreate(doc) {
   var reservation = {
     _id: guid(),
     dateTime: doc.dateTime,
-    partyName: doc.partyName,
+    name: doc.name,
     partyNumber: parseInt(doc.partyNumber),
     status: 'Pending',
     dateCreated: new Date()

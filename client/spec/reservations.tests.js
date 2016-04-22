@@ -23,14 +23,14 @@ describe('reservations', () => {
         type: 'RESERVATION_CREATE',
         addReservation: {
           dateTime: dateTime,
-          partyName: 'Joe',
+          name: 'Joe',
           partyNumber: 5
       }});
       assert.equal(newState, {
         count: 0,
         reservations: [{
           dateTime: dateTime,
-          partyName: 'Joe',
+          name: 'Joe',
           partyNumber: 5
         }]
       });

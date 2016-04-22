@@ -10,7 +10,7 @@ var Reservation = React.createClass({
       <li>
         <span className="text">
           {this.props.reservation.dateTime}:
-          &nbsp;&nbsp;{this.props.reservation.partyName} party of {this.props.reservation.partyNumber}
+          &nbsp;&nbsp;{this.props.reservation.name} party of {this.props.reservation.partyNumber}
 
           &nbsp;&nbsp;
           { this.props.reservation.status == "Pending" ? (
