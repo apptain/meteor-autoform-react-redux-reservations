@@ -19,7 +19,8 @@ const ReservationSchema = new SimpleSchema({
     type: String
   },
   partyNumber: {
-    type: Number
+    type: Number,
+    label: "#"
   },
   status: {
     type: String,

@@ -21,7 +21,8 @@ var mapStateToProps = function(state){
   //TODO Should be a date,
   //_.orderBy(state.reservations, ['dateTime'], ['desc']);
   return {
-    reservations: state.reservations
+    reservations: state.reservations,
+    formProps: state.formProps
   }
 };
 
