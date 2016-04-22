@@ -9,6 +9,7 @@ const ReservationSchema = new SimpleSchema({
   },
   dateTime: {
     type: String,
+    label: "Date & Time",
     autoform: {
       afFieldInput: {
         type: 'bootstrap-datetimepicker'
