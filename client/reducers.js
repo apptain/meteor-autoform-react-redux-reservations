@@ -2,14 +2,16 @@ import _ from 'lodash';
 
 const initialState = {
   reservations: [],
-  reservationCreateErrors: []
+  reservationCreateErrors: [],
+  formResetting: false
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'RESERVATION_CREATE':
       return Object.assign({}, state, {
-        reservations: [...state.reservations, action.reservation]
+        reservations: [...state.reservations, action.reservation],
+        formResetting: true
       });
     case 'RESERVATION_CREATE_ERROR':
       return Object.assign({}, state, {
@@ -34,6 +36,10 @@ export default (state = initialState, action) => {
       });
       return Object.assign({}, state, {
         reservations: reservations
+      });
+    case 'FORM_RESET':
+      return Object.assign({}, state, {
+        formResetting: false
       });
     default:
       return state;

@@ -1,54 +1,31 @@
 import React, { PropTypes, Component } from 'react';
-import { Session } from 'meteor/meteor';
-import { Tracker } from 'meteor/tracker';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { Blaze } from 'meteor/blaze';
-import { Template } from 'meteor/templating';
-import AutoForm from 'meteor/aldeed:autoform';
-import ReservationSchema from '../schema';
-import _ from 'lodash';
-import * as BlazeActions from '../blaze/actionCreators';
+import serialize from 'form-serialize';
 
 export default class ReservationForm extends Component {
   componentDidMount() {
     const container = this.refs.blazeContainer;
-
-    var formAction = new ReactiveVar;
-    formAction.actions = [];
-
-    var formProps = new ReactiveVar(this.props.form);
-
+    this.formResetting = new ReactiveVar(this.props.formResetting);
     const data = {
       schema: this.props.schema,
-      actionDispatcher: formAction,
-      props: formProps,
-      actions: BlazeActions
+      formSubmit: this.props.formSubmit,
+      formResetting: this.formResetting,
+      formReset: this.props.formReset,
+      serialize: serialize
     };
 
     template = Template['ReservationForm'];
     this.blazeView = Blaze.renderWithData(template, data, container);
-
-    //SetTimeout is necessary for Tracker autorun to work
-    setTimeout(this.startComputation(formAction, this.props.formSubmit), 0);
-  }
-  startComputation(formAction,formSubmit) {
-    Tracker.autorun(() => {
-      if (action = formAction.get()) {
-        switch (action.type) {
-          case 'FORM_SUBMIT':
-            formSubmit(action.doc);
-          default:
-            throw "Unhandled Action";
-        }
-      }
-    });
   }
   componentWillUnmount() {
     Blaze.remove(this.blazeView)
   }
+  componentWillReceiveProps(props) {
+    this.formResetting.set(props.formResetting);
+  }
   render() {
     return (
-        <div ref="blazeContainer"></div>
+        <div ref="blazeContainer" formResetting={this.props.formResetting}></div>
     )
   }
 }

@@ -38,6 +38,7 @@
     "redux-form": "^5.0.1",
     "redux-localstorage": "^0.4.0",
     "redux-thunk": "^1.0.0",
-    "sinon": "1.17.x"
+    "sinon": "1.17.x",
+    "form-serialize": "^0.7.1"
   }
 }

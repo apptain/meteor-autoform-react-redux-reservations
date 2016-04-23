@@ -19,10 +19,7 @@ export default class ReservationsManager extends Component {
       <div className="container">
         <header>
           <h1>Reservations</h1>
-          <ReservationForm
-            schema={ this.props.schema }
-            formSubmit={ this.props.formSubmit }
-          />
+          <ReservationForm {...this.props} />
         </header>
         <ul>
           {this.renderReservations()}

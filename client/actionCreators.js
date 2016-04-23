@@ -3,6 +3,7 @@
 
 import ReservationSchema from './schema';
 
+//
 function guid() {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
@@ -24,6 +25,7 @@ export function reservationCreate(doc) {
   }
   var context = ReservationSchema.newContext();
   if (context.validate(reservation)) {
+    //form[0].reset();
     return {
       type: 'RESERVATION_CREATE',
       reservation: reservation
@@ -34,6 +36,12 @@ export function reservationCreate(doc) {
       errors: context
     };
   }
+}
+
+export function formReset() {
+  return {
+    type: 'FORM_RESET'
+  };
 }
 
 export function reservationFulfill(id) {

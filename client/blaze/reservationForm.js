@@ -1,37 +1,32 @@
-//AutoForm hooks are not firing so we'll just read the form with jquery
 Template.ReservationForm.created = function () {
   var instance = this;
 
-  instance.actions = this.data.actions;
-
-  //dispatch and props are passed as ReactiveVar
-  instance.props = this.data.props;
-  instance.actionDispatcher = this.data.actionDispatcher;
+  instance.serialize = this.data.serialize;
+  instance.formSubmit = this.data.formSubmit;
+  instance.formReset = this.data.formReset;
+  instance.formResetting = this.data.formResetting;
   instance.form = new ReactiveVar(null);
 
-  instance.autorun = function(){
-    if(this.props.formClearing == true) {
-      this.form[0].reset();
+  instance.autorun(function(){
+    if(Template.instance().formResetting.get() && Template.instance().form.get()) {
+      Template.instance().form.get().reset();
+      Template.instance().formReset();
     }
-  }
+  });
 };
 
 Template.ReservationForm.rendered = function () {
   var button = $('.btn-primary');
-  button.html("&#10004;");
+  button.html("+");
+  Template.instance().form.set($('form')[0]);
 };
 
 Template.ReservationForm.events({
-  'submit form': function (e, template) {
-    var doc = {};
-    var form = $(e.target);
+  'submit form': function (e) {
+    var form = $(e.target)[0];
+    var serialize = Template.instance().serialize;
+    var doc = serialize(form, { hash: true });
 
-    form.serializeArray().map(function (x) {
-      doc[x.name] = x.value;
-    });
-
-    Template.instance().actionDispatcher.set(
-      Template.instance().actions.formSubmit(doc)
-    );
+    Template.instance().formSubmit(doc);
   }
 });
