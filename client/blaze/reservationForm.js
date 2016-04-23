@@ -16,8 +16,6 @@ Template.ReservationForm.created = function () {
 };
 
 Template.ReservationForm.rendered = function () {
-  var button = $('.btn-primary');
-  button.html("+");
   Template.instance().form.set($('form')[0]);
 };
 
