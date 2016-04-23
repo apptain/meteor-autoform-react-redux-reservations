@@ -47,6 +47,7 @@ button.btn-primary {
   text-shadow: 0 1px 1px hsla(0,0%,100%,.25),
     0 -1px 1px hsla(0,0%,0%,.75);
   width: 70px;
+  display block
   top:-80px;
   position: absolute;
 
@@ -57,13 +58,18 @@ button.btn-primary:focus {
   //TODO Find a better green
   color: green;
   background: transparent;
-  text-shadow: 0 0 20px hsla(240,75%,75%,.5),
-    0 1px 1px hsla(0,0%,100%,.25),
+  height: 70px;
+  padding: 0;
+  text-shadow: 0 1px 1px hsla(0,0%,100%,.25),
     0 -1px 1px hsla(0,0%,0%,.75);
+  width: 70px;
+  display block
+  top:-80px;
+  position: absolute;
 }
-button.btn-primary:active {
-  line-height: 86px;
-}
+
+.help-block
+  position absolute
 
 .page-wrap
   text-align left
