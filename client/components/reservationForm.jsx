@@ -1,6 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import { ReactiveVar } from 'meteor/reactive-var';
 import serialize from 'form-serialize';
+import { Blaze } from 'meteor/blaze';
+import { Template } from 'meteor/templating';
 
 export default class ReservationForm extends Component {
   componentDidMount() {
@@ -14,7 +16,7 @@ export default class ReservationForm extends Component {
       serialize: serialize
     };
 
-    template = Template['ReservationForm'];
+    const template = Template['ReservationForm'];
     this.blazeView = Blaze.renderWithData(template, data, container);
   }
   componentWillUnmount() {

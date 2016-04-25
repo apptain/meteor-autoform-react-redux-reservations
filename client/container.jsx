@@ -7,10 +7,16 @@ import store from './store';
 import ReservationsManager from './components/reservationsManager.jsx';
 import ReservationSchema from './schema';
 
+import * as overlayActions from './overlays/actionCreators';
+import Overlays from './overlays/components/overlays.jsx';
+import YoutubeModal from './components/youtubeModal.jsx';
+
 const ReservationsContainer = React.createClass({
   render() {
     return (
-      <ReservationsManager schema={ ReservationSchema } {...this.props}/>
+      <div>
+        <ReservationsManager schema={ ReservationSchema } {...this.props}/>
+      </div>
     )
   }
 });
@@ -20,16 +26,20 @@ var mapStateToProps = function(state){
   //dateTime is a string, so this is is useless for now. autoform datetimepicker passes a string
   //TODO Should be a date,
   //_.orderBy(state.reservations, ['dateTime'], ['desc']);
-
   return {
-    reservations: state.reservations,
-    formResetting: state.formResetting
+    reservations: state.reservations.filteredReservations,
+    formResetting: state.reservations.formResetting,
+    overlays: state.overlays
   }
 };
 
 var mapDispatchToProps = function(dispatch){
   return {
     formSubmit: function(doc) {
+      dispatch(overlayActions.overlayAdd(
+        'youtube',
+        <YoutubeModal />
+      ));
       dispatch(actions.reservationCreate(doc));
     },
     formReset: function() {
